@@ -1,15 +1,17 @@
 
-for (var i = 0 ; i< document.querySelectorAll(".drum").length ; i++){
-
-    document.querySelectorAll(".drum")[i].addEventListener("click" , function handleClick(){
-       makeSound(this.innerHTML);
+     
+     $("button").on("click" , function (){
+           makeSound(this.innerHTML);
        makeAnimation(this.innerHTML);
-    });
-};
-    document.addEventListener("keydown" , function(event){
-        makeSound(event.key.toLowerCase());
-        makeAnimation(event.key);
-    });
+     })
+     
+     
+
+    $(document).on("keydown" , function(event){
+      
+      makeSound(event.key);
+  makeAnimation(event.key);
+    })
 
    
 
@@ -45,12 +47,10 @@ function makeSound(key) {
   }
 };
 
-function makeAnimation(currentKey){
-   
-    document.querySelector("." + currentKey).classList.add("pressed");
-     
-    setTimeout(function(){
-        document.querySelector("." + currentKey).classList.remove("pressed");
-     
-    }, 100);
+function makeAnimation(currentKey) {
+  var activeButton = $("." + currentKey);
+  activeButton.addClass("pressed");
+  setTimeout(function () {
+    activeButton.removeClass("pressed");
+  }, 100);
 }
